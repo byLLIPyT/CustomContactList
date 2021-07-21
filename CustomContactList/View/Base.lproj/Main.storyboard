@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uZm-FR-2Yr">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17701"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Table View Controller-->
+        <scene sceneID="i37-Gc-St0">
+            <objects>
+                <tableViewController id="uZm-FR-2Yr" customClass="MainTableViewController" customModule="CustomContactList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BCd-Bc-mZm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact" rowHeight="80" id="A7t-CW-t7c" customClass="ContactTableViewCell" customModule="CustomContactList" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A7t-CW-t7c" id="WLx-tK-efu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="L27-HL-j1e">
+                                            <rect key="frame" x="10" y="5" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="70" id="6cg-UI-H1R"/>
+                                                <constraint firstAttribute="width" constant="70" id="9de-0Y-T2a"/>
+                                            </constraints>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1JI-ym-Tqz">
+                                            <rect key="frame" x="98" y="5" width="306" height="70"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXd-Da-6Ks">
+                                                    <rect key="frame" x="0.0" y="0.0" width="306" height="20"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4b-v8-3P1">
+                                                    <rect key="frame" x="0.0" y="30" width="306" height="16.5"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMA-mm-9on">
+                                                    <rect key="frame" x="0.0" y="56.5" width="306" height="13.5"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1JI-ym-Tqz" firstAttribute="leading" secondItem="L27-HL-j1e" secondAttribute="trailing" constant="18" id="2xq-9D-Na3"/>
+                                        <constraint firstItem="1JI-ym-Tqz" firstAttribute="top" secondItem="WLx-tK-efu" secondAttribute="top" constant="5" id="3De-jG-zNB"/>
+                                        <constraint firstAttribute="bottom" secondItem="1JI-ym-Tqz" secondAttribute="bottom" constant="5" id="BSh-Xl-H3R"/>
+                                        <constraint firstItem="L27-HL-j1e" firstAttribute="top" secondItem="WLx-tK-efu" secondAttribute="top" constant="5" id="jjH-EN-N39"/>
+                                        <constraint firstItem="L27-HL-j1e" firstAttribute="leading" secondItem="WLx-tK-efu" secondAttribute="leading" constant="10" id="m3d-g8-NXO"/>
+                                        <constraint firstAttribute="trailing" secondItem="1JI-ym-Tqz" secondAttribute="trailing" constant="10" id="pR1-xD-GdF"/>
+                                        <constraint firstAttribute="bottom" secondItem="L27-HL-j1e" secondAttribute="bottom" constant="5" id="puc-nv-Y9S"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="companyContactLabel" destination="P4b-v8-3P1" id="tEt-zR-xZY"/>
+                                    <outlet property="contactImage" destination="L27-HL-j1e" id="dR7-1W-2ub"/>
+                                    <outlet property="nameContactLabel" destination="fXd-Da-6Ks" id="NPp-ju-0Ak"/>
+                                    <outlet property="phoneContactLabel" destination="UMA-mm-9on" id="F7L-Qx-XoC"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uZm-FR-2Yr" id="J7y-ml-K2k"/>
+                            <outlet property="delegate" destination="uZm-FR-2Yr" id="LIw-cP-A06"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ly4-9H-Vqp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-72.463768115942031" y="79.6875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Photo" width="244" height="300"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
