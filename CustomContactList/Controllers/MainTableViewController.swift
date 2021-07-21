@@ -10,16 +10,15 @@ import Contacts
 import ContactsUI
 
 class MainTableViewController: UITableViewController {
-
-    private var contactStore:CNContactStore?
+    
+    //private var contactStore:CNContactStore?
     private var allContacts: [CNContact] = []
     private var refControl = UIRefreshControl()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let status = CNContactStore.authorizationStatus(for: .contacts)
         if status == .authorized || status == .notDetermined {
-            let contactStore = CNContactStore()
             allContacts = getAllContacts()
         }
         refControl.attributedTitle = NSAttributedString(string: "Refresh")
@@ -34,14 +33,20 @@ class MainTableViewController: UITableViewController {
         }
         refControl.endRefreshing()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return allContacts.count
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let number = allContacts[indexPath.row].phoneNumbers.first?.value.stringValue {
+            callNumber(number: number)
+        }
+    }
+    
     func getAllContacts() -> [CNContact] {
         var contacts: [CNContact] = {
             let contactStore = CNContactStore()
@@ -89,5 +94,24 @@ class MainTableViewController: UITableViewController {
             cell.contactImage.image = UIImage(data: currentImageContact)
         }
         return cell
+    }
+    
+    private func callNumber(number: String) {
+        
+        guard let callnumberURL = URL(string: "tel://\(number)") else { return }
+        if UIApplication.shared.canOpenURL(callnumberURL) {
+            let alertController = UIAlertController(title: "Custom Contact List", message: "Are you sure you want to call \n\(number)?", preferredStyle: .alert)
+            let yesPressed = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                UIApplication.shared.open(callnumberURL, options: [ : ], completionHandler: nil)
+            })
+            let noPressed = UIAlertAction(title: "No", style: .default, handler: { (action) in
+                
+            })
+            alertController.addAction(yesPressed)
+            alertController.addAction(noPressed)
+            present(alertController, animated: true, completion: nil)
+        } else {
+            print("Can't open url on this device")
+        }
     }
 }

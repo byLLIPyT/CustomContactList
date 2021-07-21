@@ -14,6 +14,7 @@
 		AB38F46126A7F5440025794A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38F45F26A7F5440025794A /* LaunchScreen.storyboard */; };
 		AB38F46E26A7F6C10025794A /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38F46D26A7F6C10025794A /* MainTableViewController.swift */; };
 		AB38F47126A7F6D80025794A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38F47026A7F6D80025794A /* ContactTableViewCell.swift */; };
+		AB38F47F26A81F120025794A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38F47E26A81F120025794A /* Contact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AB38F46226A7F5440025794A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB38F46D26A7F6C10025794A /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		AB38F47026A7F6D80025794A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		AB38F47E26A81F120025794A /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,12 +60,13 @@
 		AB38F45326A7F5420025794A /* CustomContactList */ = {
 			isa = PBXGroup;
 			children = (
-				AB38F45426A7F5420025794A /* AppDelegate.swift */,
 				AB38F45626A7F5420025794A /* SceneDelegate.swift */,
+				AB38F45426A7F5420025794A /* AppDelegate.swift */,
+				AB38F46226A7F5440025794A /* Info.plist */,
+				AB38F47D26A81F050025794A /* Models */,
+				AB38F47926A81D210025794A /* Resources */,
 				AB38F47326A80B990025794A /* Controllers */,
 				AB38F46A26A7F6620025794A /* View */,
-				AB38F45D26A7F5440025794A /* Assets.xcassets */,
-				AB38F46226A7F5440025794A /* Info.plist */,
 			);
 			path = CustomContactList;
 			sourceTree = "<group>";
@@ -84,6 +87,22 @@
 				AB38F47026A7F6D80025794A /* ContactTableViewCell.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AB38F47926A81D210025794A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AB38F45D26A7F5440025794A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AB38F47D26A81F050025794A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AB38F47E26A81F120025794A /* Contact.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +177,7 @@
 			files = (
 				AB38F47126A7F6D80025794A /* ContactTableViewCell.swift in Sources */,
 				AB38F45526A7F5420025794A /* AppDelegate.swift in Sources */,
+				AB38F47F26A81F120025794A /* Contact.swift in Sources */,
 				AB38F46E26A7F6C10025794A /* MainTableViewController.swift in Sources */,
 				AB38F45726A7F5420025794A /* SceneDelegate.swift in Sources */,
 			);
