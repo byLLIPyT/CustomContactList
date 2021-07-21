@@ -25,6 +25,8 @@ class ContactTableViewCell: UITableViewCell {
         cell.companyContactLabel.text = contact.organizationName
         if let currentImageContact = contact.imageData {
             cell.contactImage.image = UIImage(data: currentImageContact)
+        } else {
+            cell.contactImage.image = UIImage(named: "Photo")
         }
     }
 }
