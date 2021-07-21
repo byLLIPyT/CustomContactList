@@ -58,7 +58,6 @@ class MainTableViewController: UITableViewController, UISearchBarDelegate {
     private func receiveContactList() {
         allContacts = contactManager.getAllContacts()
         filteredData = allContacts
-        
     }
     
     @objc func refresh() {
