@@ -8,10 +8,9 @@
 import UIKit
 
 class ContactTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var contactImage: UIImageView!
     @IBOutlet weak var nameContactLabel: UILabel!
     @IBOutlet weak var phoneContactLabel: UILabel!
     @IBOutlet weak var companyContactLabel: UILabel!
-    
 }

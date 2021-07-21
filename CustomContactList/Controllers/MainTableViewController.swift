@@ -11,33 +11,20 @@ import ContactsUI
 
 class MainTableViewController: UITableViewController {
     
-    //private var contactStore:CNContactStore?
     private var allContacts: [CNContact] = []
     private var refControl = UIRefreshControl()
+    var contactManager = Contact()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let status = CNContactStore.authorizationStatus(for: .contacts)
-        if status == .authorized || status == .notDetermined {
-            allContacts = getAllContacts()
-        }
-        refControl.attributedTitle = NSAttributedString(string: "Refresh")
-        refControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        tableView.addSubview(refControl)
-    }
-    
-    @objc func refresh() {
-        DispatchQueue.main.async {
-            self.allContacts = self.getAllContacts()
-            self.tableView.reloadData()
-        }
-        refControl.endRefreshing()
+        
+        checkPrivacy()
+        configureRefreshControl()
     }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return allContacts.count
     }
     
@@ -45,41 +32,6 @@ class MainTableViewController: UITableViewController {
         if let number = allContacts[indexPath.row].phoneNumbers.first?.value.stringValue {
             callNumber(number: number)
         }
-    }
-    
-    func getAllContacts() -> [CNContact] {
-        var contacts: [CNContact] = {
-            let contactStore = CNContactStore()
-            let keysToFetch = [
-                CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
-                CNContactEmailAddressesKey,
-                CNContactPhoneNumbersKey,
-                CNContactImageDataAvailableKey,
-                CNContactImageDataKey,
-                CNContactThumbnailImageDataKey] as [Any]
-            var allContainers: [CNContainer] = []
-            do {
-                allContainers = try contactStore.containers(matching: nil)
-            } catch {
-                print(error)
-            }
-            var results: [CNContact] = []
-            for container in allContainers {
-                let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
-                do {
-                    let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
-                    results.append(contentsOf: containerResults)
-                } catch {
-                    print(error)
-                }
-            }
-            return results
-        }()
-        
-        contacts.sort { (cont1: CNContact, cont2: CNContact) -> Bool in
-            return (cont1.givenName + " " +  cont1.familyName + " " + cont1.middleName) < (cont2.givenName + " " + cont2.familyName + " " + cont2.middleName)
-        }
-        return contacts
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,5 +65,30 @@ class MainTableViewController: UITableViewController {
         } else {
             print("Can't open url on this device")
         }
+    }
+    
+    private func configureRefreshControl() {
+        refControl.attributedTitle = NSAttributedString(string: "Refresh")
+        refControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refControl)
+    }
+    
+    private func checkPrivacy() {
+        let status = CNContactStore.authorizationStatus(for: .contacts)
+        if status == .authorized || status == .notDetermined {
+            receiveContactList()
+        }
+    }
+    
+    private func receiveContactList() {
+        allContacts = contactManager.getAllContacts()
+    }
+    
+    @objc func refresh() {
+        DispatchQueue.main.async {
+            self.allContacts = self.contactManager.getAllContacts()
+            self.tableView.reloadData()
+        }
+        refControl.endRefreshing()
     }
 }
