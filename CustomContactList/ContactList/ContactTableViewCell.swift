@@ -21,6 +21,8 @@ class ContactTableViewCell: UITableViewCell {
         cell.nameContactLabel.text = String(contact.givenName + " " + contact.familyName + " " + contact.middleName)
         if let currentPhone = contact.phoneNumbers.first {
             cell.phoneContactLabel.text = currentPhone.value.stringValue
+        } else {
+            cell.phoneContactLabel.text = ""
         }
         cell.companyContactLabel.text = contact.organizationName
         if let currentImageContact = contact.imageData {
